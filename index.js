@@ -8,7 +8,7 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.set('db', (process.env.PROD_MONGODB || 'mongodb://' + config.db.host + ':27017/' + config.db.name));
 
-mongoose.connect(app.get('db'), function(err){
+mongoose.connect(app.get('db'), function(err, db){
   if(err){
     throw new Error('Database connection failed');
   } else {
