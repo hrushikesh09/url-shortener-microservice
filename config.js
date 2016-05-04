@@ -2,7 +2,7 @@ var config = {};
 
 config.db = {};
 
-config.webhost = 'http://localhost:5000/';
+config.webhost = 'https://hs-url-shortener.herokuapp.com';
 
 config.db.host = 'localhost';
 config.db.name = 'url-shortener';
