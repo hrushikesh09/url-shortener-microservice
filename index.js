@@ -6,7 +6,7 @@ var config = require('./config');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
-app.set('db', (process.env.PROD_MONGODB || 'mongodb://' + config.db.host + ':27017/' + config.db.name));
+app.set('db', (process.env.MONGOLAB_URI || 'mongodb://' + config.db.host + ':27017/' + config.db.name));
 
 mongoose.connect(app.get('db'), function(err, db){
   if(err){
