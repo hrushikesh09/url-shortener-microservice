@@ -6,7 +6,13 @@ var config = require('./config');
 
 var app = express();
 
-mongoose.connect('mongodb://' + config.db.host + ':27017/' + config.db.name);
+mongoose.connect(process.env.PROD_MONGODB || 'mongodb://' + config.db.host + ':27017/' + config.db.name, function(err){
+  if(err){
+    throw new Error('Database connection failed');
+  } else {
+    console.log('Database Connected !');
+  }
+});
 
 app.set('port', (process.env.PORT || 5000));
 
