@@ -5,16 +5,16 @@ var Url = require('./models/url');
 var config = require('./config');
 
 var app = express();
+app.set('port', (process.env.PORT || 5000));
+app.set('db', (process.env.PROD_MONGODB || 'mongodb://' + config.db.host + ':27017/' + config.db.name));
 
-mongoose.connect(process.env.PROD_MONGODB || 'mongodb://' + config.db.host + ':27017/' + config.db.name, function(err){
+mongoose.connect(app.get('db'), function(err){
   if(err){
     throw new Error('Database connection failed');
   } else {
     console.log('Database Connected !');
   }
 });
-
-app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
